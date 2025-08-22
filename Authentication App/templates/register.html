@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Register</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h2>Register</h2>
+        {% with messages = get_flashed_messages() %}
+          {% if messages %}
+            <ul class="flash-messages">
+              {% for message in messages %}
+                <li>{{ message }}</li>
+              {% endfor %}
+            </ul>
+          {% endif %}
+        {% endwith %}
+        <form action="{{ url_for('register') }}" method="POST">
+            <label for="username">Username:</label>
+            <input type="text" name="username" required minlength="5"><br>
+
+            <label for="email">Email:</label>
+            <input type="email" name="email" required pattern="[^@]+@gmail\.com"><br>
+
+            <label for="age">Age:</label>
+            <input type="number" name="age" required min="13" max="99"><br>
+
+            <label for="password">Password:</label>
+            <input type="password" name="password" required minlength="8" maxlength="16"><br>
+
+            <label for="confirm_password">Confirm Password:</label>
+            <input type="password" name="confirm_password" required minlength="8" maxlength="16"><br>
+
+            <button type="submit">Register</button>
+        </form>
+        <p>Already have an account? <a href="{{ url_for('login') }}">Login here</a>.</p>
+    </div>
+</body>
+</html>
